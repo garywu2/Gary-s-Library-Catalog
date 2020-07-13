@@ -8,7 +8,7 @@ app = Flask(__name__)
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:test123@localhost/a'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:testing123@libdb.cmjxh9qs1qaa.us-east-2.rds.amazonaws.com/libdb'
 app.debug = True
 db = SQLAlchemy(app)
 
