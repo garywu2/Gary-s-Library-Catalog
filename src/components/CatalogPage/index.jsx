@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import styled from "styled-components"
 import { Table, Button, ModalHeader, ModalFooter, Modal, ModalBody, FormGroup, Label, Input } from 'reactstrap'
 import axios from 'axios';
+import config from '../../config';
 
 const Wrapper = styled.div`
     display: flex;
@@ -54,7 +55,7 @@ class CatalogPage extends Component {
     }
 
     componentWillMount() {
-        axios.get('/catalog').then((response) => {
+        axios.get(config.endpoint + 'catalog').then((response) => {
             this.setState({
                 books: response.data
             })
@@ -63,13 +64,13 @@ class CatalogPage extends Component {
 
     searching(searchFie) {
         if (searchFie === '') {
-            axios.get('/catalog').then((response) => {
+            axios.get(config.endpoint + 'catalog').then((response) => {
                 this.setState({
                     books: response.data
                 })
             });
         } else {
-        axios.get('/catalog/' + searchFie) .then((response) => {
+        axios.get(config.endpoint + 'catalog/' + searchFie) .then((response) => {
             console.log(searchFie)
             this.setState({
                 books: response.data
@@ -118,7 +119,7 @@ class CatalogPage extends Component {
         if (this.state.books.some(e => e.bookTitle === this.state.addBook.bookTitle) || this.state.addBook.bookTitle === '') {
             this.setState({ hasErrors: true })
         } else {
-        axios.post('/catalog', this.state.addBook).then((response) => {
+        axios.post(config.endpoint + 'catalog', this.state.addBook).then((response) => {
             let { books } = this.state;
 
             books.push(response.data);
@@ -136,7 +137,7 @@ class CatalogPage extends Component {
     }
 
     likepage(bookTitle, bookText, likes) {
-        axios.put('/catalog/' + bookTitle, {
+        axios.put(config.endpoint + 'catalog/' + bookTitle, {
             bookTitle, bookText, likes
         }).then((response) => {
             this._refreshBooks();
@@ -148,7 +149,7 @@ class CatalogPage extends Component {
     }
 
     _refreshBooks() {
-        axios.get('/catalog').then((response) => {
+        axios.get(config.endpoint + 'catalog').then((response) => {
             this.setState({
                 books: response.data
             })
