@@ -1,7 +1,7 @@
 let config = {
     api: {
       protocol: "http",
-      host: "localhost",
+      host: "ec2-3-21-113-3.us-east-2.compute.amazonaws.com",
       port: 5000,
     }
   };
