@@ -14,7 +14,9 @@ npm run start-flask
 ```
 
 Then on a second bash terminal inside of the Gary-s-Library-Catalog directory
-npm start
 
+```bash
+npm start
+```
 
 The npm run start-flask will run the server and the npm start will run the client
